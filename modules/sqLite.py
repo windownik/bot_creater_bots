@@ -16,8 +16,8 @@ def read_value_table_name(
 
 # Пользователь проверяет себя по базе данных
 def read_all(
-        name: str,
-        table: str):
+        name: str = '*',
+        table: str = 'all_users'):
     connect = sqlite3.connect('modules/database.db')
     curs = connect.cursor()
     curs.execute(f'SELECT {name} FROM {table}')

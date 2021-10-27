@@ -12,9 +12,37 @@ with open('modules/telegram_token.txt', 'r') as file:
 storage = MemoryStorage()
 logging.basicConfig(level=logging.INFO)
 bot = Bot(telegram_token)
-dp = Dispatcher(bot)
+dp = Dispatcher(bot, storage=storage)
 
 
-# Welcome form
+# Welcome form admin
 class start_Form(StatesGroup):
+    admin_first_menu = State()
+
+
+# Welcome form admin
+class Admin_Form(StatesGroup):
+    admin_first_menu = State()
+    search_user = State()
+    set_user_type = State()
+    set_user_password = State()
+    set_user_password_confirm = State()
+
+    delete_user_confirm = State()
+
+    change_data = State()
+    change_data_confirm = State()
+
+
+# Welcome form noName
+class NoName(StatesGroup):
     first_menu = State()
+    noname_send_name = State()
+    noname_contact = State()
+
+
+# Welcome form user
+class User_Forms(StatesGroup):
+    first_menu = State()
+
+
