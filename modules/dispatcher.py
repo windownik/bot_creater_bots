@@ -30,8 +30,15 @@ class Admin_Form(StatesGroup):
 
     delete_user_confirm = State()
 
+    setings_menu = State()
     change_data = State()
     change_data_confirm = State()
+
+    setings_pass = State()
+    delete_pass = State()
+
+    new_pass = State()
+    new_pass_confirm = State()
 
 
 # Welcome form noName
@@ -44,5 +51,30 @@ class NoName(StatesGroup):
 # Welcome form user
 class User_Forms(StatesGroup):
     first_menu = State()
+    main_state = State()
+    q_a = State()
+
+
+# Welcome form admin
+class Admin_Builder (StatesGroup):
+    btn_builder = State()
+    btn_builder_input_text = State()
+    change_btn_text = State()
+
+    post_builder = State()
+    change_post_text = State()
+    post_builder_delete = State()
+    only_post_delete = State()
+
+    create_post_text = State()
+    create_post_text_inline = State()
+
+    change_post_type = State()
+    inline_url_text = State()
+    inline_window_text = State()
+
+    btn_builder_delete = State()
+
+    add_media_post = State()
 
 

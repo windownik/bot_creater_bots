@@ -28,7 +28,7 @@ def read_all(
 # Создаем первую запись в бд
 def insert_first_note(
         table: str,
-        telegram_id: int, *,
+        telegram_id, *,
         id_name: str = 'telegram_id'):
     connect = sqlite3.connect('modules/database.db')
     curs = connect.cursor()
@@ -40,7 +40,7 @@ def insert_first_note(
 # Обновляем любые данные в любую таблицу
 def insert_info(
         table: str,
-        telegram_id: int,
+        telegram_id,
         name: str,
         data, *,
         id_name: str = 'telegram_id'):
@@ -73,3 +73,28 @@ def delete_str(
     curs.execute(f"DELETE FROM '{table}' WHERE {name}={data}")
     connect.commit()
     connect.close()
+
+
+# Удаляем таблицу
+def delete_table(table: str):
+    connect = sqlite3.connect('modules/database.db')
+    curs = connect.cursor()
+    curs.execute(f"DROP TABLE IF EXISTS {table}")
+    connect.commit()
+    connect.close()
+
+
+# Новый юзер создает таблицу в бд
+def new_table(table_name: str):
+    db = sqlite3.connect('modules/database.db')
+    cursor = db.cursor()
+    cursor.execute(f'''CREATE TABLE IF NOT EXISTS post{str(table_name)} (
+     number TEXT,
+     post_text TEXT, 
+     keyboard TEXT, 
+     kb_type TEXT,
+     id INTEGER PRIMARY KEY,
+     inline_type TEXT,
+     inline_kb TEXT,
+     post_type TEXT)''')
+    db.commit()
